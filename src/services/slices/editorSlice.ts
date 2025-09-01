@@ -30,16 +30,8 @@ export const editorSlice = createSlice({
       state.buns = action.payload;
     },
 
-    addIngredient: {
-      reducer: (state, action: PayloadAction<TConstructorIngredient>) => {
-        state.otherIngredients.push(action.payload);
-      },
-      prepare: (ingredient: TIngredient) => ({
-        payload: {
-          ...ingredient,
-          id: uuidv4()
-        }
-      })
+    addIngredient: (state, action: PayloadAction<TConstructorIngredient>) => {
+      state.otherIngredients.push(action.payload);
     },
 
     removeIngredient: (state, action: PayloadAction<{ id: string }>) => {

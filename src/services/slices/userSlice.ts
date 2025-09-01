@@ -143,7 +143,7 @@ export const userSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string || 'Ошибка входа';
+        state.error = (action.payload as string) || 'Ошибка входа';
         state.isAuthChecked = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
@@ -159,7 +159,8 @@ export const userSlice = createSlice({
       })
       .addCase(getUserData.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string || 'Ошибка получения пользователя';
+        state.error =
+          (action.payload as string) || 'Ошибка получения пользователя';
         state.isInit = true;
         state.isAuthChecked = true;
       })
@@ -177,7 +178,7 @@ export const userSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string || 'Ошибка регистрации';
+        state.error = (action.payload as string) || 'Ошибка регистрации';
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -193,7 +194,8 @@ export const userSlice = createSlice({
       })
       .addCase(forgotPassword.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string || 'Ошибка восстановления пароля';
+        state.error =
+          (action.payload as string) || 'Ошибка восстановления пароля';
       })
       .addCase(forgotPassword.fulfilled, (state) => {
         state.isLoading = false;
@@ -206,7 +208,7 @@ export const userSlice = createSlice({
       })
       .addCase(resetPassword.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string || 'Ошибка сброса пароля';
+        state.error = (action.payload as string) || 'Ошибка сброса пароля';
       })
       .addCase(resetPassword.fulfilled, (state) => {
         state.isLoading = false;
@@ -219,7 +221,8 @@ export const userSlice = createSlice({
       })
       .addCase(updateUserData.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string || 'Ошибка обновления пользователя';
+        state.error =
+          (action.payload as string) || 'Ошибка обновления пользователя';
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -233,7 +236,7 @@ export const userSlice = createSlice({
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload as string || 'Ошибка выхода';
+        state.error = (action.payload as string) || 'Ошибка выхода';
         state.isAuthChecked = true;
       })
       .addCase(logoutUser.fulfilled, (state) => {

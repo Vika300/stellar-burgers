@@ -36,7 +36,7 @@ export const getOrderByNumber = createAsyncThunk(
   async (orderNumber: number, { rejectWithValue }) => {
     try {
       const response = await getOrderByNumberApi(orderNumber);
-      return response.orders;
+      return response.orders[0] || null;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -56,7 +56,7 @@ export interface IOrdersState {
     error: string | null;
   };
   receivedOrder: {
-    data: TOrder[] | null;
+    data: TOrder | null;
     isLoading: boolean;
     error: string | null;
   };
@@ -94,7 +94,7 @@ export const ordersSlice = createSlice({
     orderResponse: (state) => state.createdOrder.order,
     orderContent: (state) => state.createdOrder.orderData,
 
-    orderData: (state) => state.receivedOrder.data,
+    orderItemData: (state) => state.receivedOrder.data,
     orderGetting: (state) => state.receivedOrder.isLoading,
     orderGettingError: (state) => state.receivedOrder.error
   },
@@ -168,7 +168,7 @@ export const {
   orderReject,
   orderResponse,
   orderContent,
-  orderData,
+  orderItemData,
   orderGetting,
   orderGettingError
 } = ordersSlice.selectors;
