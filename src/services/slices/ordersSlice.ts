@@ -5,7 +5,7 @@ import {
   orderBurgerApi,
   getOrderByNumberApi,
   TNewOrderResponse
-} from '@api';
+} from '../../utils/burger-api';
 
 export const getOrders = createAsyncThunk(
   'orders/getOrders',
@@ -14,7 +14,7 @@ export const getOrders = createAsyncThunk(
       const response = await getOrdersApi();
       return response;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      return rejectWithValue('Ошибка загрузки заказов');
     }
   }
 );
@@ -26,7 +26,7 @@ export const createOrder = createAsyncThunk(
       const response = await orderBurgerApi(orderData);
       return response;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      return rejectWithValue('Ошибка создания заказа');
     }
   }
 );
@@ -38,7 +38,7 @@ export const getOrderByNumber = createAsyncThunk(
       const response = await getOrderByNumberApi(orderNumber);
       return response.orders[0] || null;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      return rejectWithValue('Ошибка загрузки заказа');
     }
   }
 );
@@ -119,8 +119,7 @@ export const ordersSlice = createSlice({
       })
       .addCase(getOrders.rejected, (state, action) => {
         state.ordersList.isLoading = false;
-        state.ordersList.error =
-          action.error.message || 'Ошибка загрузки заказов';
+        state.ordersList.error = 'Ошибка загрузки заказов';
       })
       .addCase(getOrders.fulfilled, (state, action) => {
         state.ordersList.isLoading = false;
@@ -134,8 +133,7 @@ export const ordersSlice = createSlice({
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.createdOrder.isLoading = false;
-        state.createdOrder.error =
-          action.error.message || 'Ошибка создания заказа';
+        state.createdOrder.error = 'Ошибка создания заказа';
       })
       .addCase(createOrder.fulfilled, (state, action) => {
         state.createdOrder.isLoading = false;
@@ -150,8 +148,7 @@ export const ordersSlice = createSlice({
       })
       .addCase(getOrderByNumber.rejected, (state, action) => {
         state.receivedOrder.isLoading = false;
-        state.receivedOrder.error =
-          action.error.message || 'Ошибка загрузки заказа';
+        state.receivedOrder.error = 'Ошибка загрузки заказа';
       })
       .addCase(getOrderByNumber.fulfilled, (state, action) => {
         state.receivedOrder.isLoading = false;
