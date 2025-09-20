@@ -35,3 +35,15 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('addIngredient', (selector: string) => {
+    cy.get(selector)
+        .next()
+        .contains('button', 'Добавить')
+        .click();
+});
+Cypress.Commands.add('existAndContain', (selector: string, contain: string) => {
+    cy.get(selector)
+        .should('exist')
+        .and('contain', contain);
+});
