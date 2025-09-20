@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils-types';
-import { getIngredientsApi } from '@api';
+import { getIngredientsApi } from '../../utils/burger-api';
 
 export const getIngredients = createAsyncThunk(
   'ingredients/getIngredients',
@@ -43,7 +43,7 @@ export const ingredientsSlice = createSlice({
       })
       .addCase(getIngredients.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'Ошибка загрузки';
+        state.error = 'Ошибка загрузки';
       });
   }
 });

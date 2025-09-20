@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TOrder } from '../../utils/types';
-import { getFeedsApi } from '@api';
+import { getFeedsApi } from '../../utils/burger-api';
 
 export const getFeeds = createAsyncThunk(
   'feeds/getFeeds',
@@ -67,7 +67,7 @@ export const feedsSlice = createSlice({
       })
       .addCase(getFeeds.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'Ошибка загрузки';
+        state.error = 'Ошибка загрузки';
       });
   }
 });
